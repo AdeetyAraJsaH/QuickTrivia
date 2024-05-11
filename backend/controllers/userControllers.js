@@ -1,6 +1,7 @@
 import expressAsyncHandler from "express-async-handler"
 import User from "../models/userModels.js"
 import generateToken from "../utils/generateToken.js"
+import QuizData from "../models/quizModel.js";
 
 // @desc AUTH user / setToken
 // @access public
@@ -13,9 +14,11 @@ export const authUser = expressAsyncHandler(async (req, res) => {
     if (user && await user.matchPassword(password)) {
         generateToken(res, user._id)
         res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email
+            }
         });
     } else {
         res.status(401);
@@ -43,9 +46,11 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
     if (user) {
         generateToken(res, user._id)
         res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email
+            }
         });
     } else {
         res.status(400);
@@ -55,7 +60,7 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
 
 // @desc LOGOUT user 
 // @access public
-// @route POST api/users/auth
+// @route POST api/users/logout
 
 export const logoutUser = expressAsyncHandler(async (req, res) => {
     res.cookie('jwt', '', {
@@ -75,7 +80,8 @@ export const getUserProfile = expressAsyncHandler(async (req, res) => {
         name: req.user.name,
         email: req.user.email
     }
-    res.status(200).json({ message: 'User profile.', user })
+    const quizData = req.quizData;
+    res.status(200).json({ message: 'User profile.', user, quizData })
 })
 
 // @desc UPDATE user profile
@@ -93,13 +99,29 @@ export const updateUserProfile = expressAsyncHandler(async (req, res) => {
         const updatedUser = await user.save();
         res.status(200).json({
             message: 'Updated User profile.',
-            _id: updatedUser._id,
-            name: updatedUser.name,
-            email: updatedUser.email
+            user: {
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email
+            }
         })
     } else {
         res.status(404);
         throw new Error('user Not found');
     }
 
+})
+
+export const saveQuiz = expressAsyncHandler(async (req, res) => {
+    const { createdAt, details, email, questions, Result } = req.body;
+    // console.log(req.body);
+    // console.log(`${createdAt} ${email} ${details} ${questions} ${Result}`);
+    const quiz = await QuizData.create({
+        createdAt,
+        details,
+        email,
+        questions,
+        Result
+    });
+    res.status(201).json({ message: "Quiz Saved." })
 })
