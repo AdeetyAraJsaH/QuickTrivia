@@ -15,6 +15,10 @@ const userSchema = mongoose.Schema(
         password: {
             type: String,
             required: true
+        },
+        description: {
+            type: String,
+            default:"I'm great at quiZz riZz 😎😉"
         }
     },
     {
