@@ -89,20 +89,34 @@ export const getUserProfile = expressAsyncHandler(async (req, res) => {
 // @route PUT api/users/profile
 
 export const updateUserProfile = expressAsyncHandler(async (req, res) => {
+    const { name, email, desc } = req.body;
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+        res.status(400);
+        throw new Error("User with this email Exists.")
+    }
     const user = await User.findById(req.user._id);
     if (user) {
-        user.name = req.body.name || user.name;
-        user.email = req.body.email || user.email;
+        const prevEmail = user.email;
+        const Quiz = await QuizData.find({ prevEmail });
+        Quiz.map(async (quiz) => {
+            quiz.email = email;
+            await quiz.save();
+        })
+        user.name = name || user.name;
+        user.email = email || user.email;
+        user.desc = desc || user.desc;
         if (req.body.password) {
             user.password = req.body.password;
         }
         const updatedUser = await user.save();
         res.status(200).json({
-            message: 'Updated User profile.',
+            message: 'Profile Updated',
             user: {
                 _id: updatedUser._id,
                 name: updatedUser.name,
-                email: updatedUser.email
+                email: updatedUser.email,
+                desc: updatedUser.description
             }
         })
     } else {
