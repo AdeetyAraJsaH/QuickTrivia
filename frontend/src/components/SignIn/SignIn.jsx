@@ -14,7 +14,7 @@ const SignIn = () => {
     const [errMsg, setErrMsg] = useState('');
 
     const validateEmail = () => {
-        const emailRegex = new RegExp("[a-zA-Z0-9]{0,}([.]?[a-zA-Z0-9]{1,})[@](gmail.com|hotmail.com|yahoo.com)")
+        const emailRegex = new RegExp("[a-zA-Z0-9]{0,}([.]?[a-zA-Z0-9]{1,})[@](gmail.com|hotmail.com|yahoo.com|test.com)")
         // /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (emailRegex.test(email)) {
             setErrMsg("");
