@@ -89,6 +89,7 @@ export const getUserProfile = expressAsyncHandler(async (req, res) => {
 // @route PUT api/users/profile
 
 export const updateUserProfile = expressAsyncHandler(async (req, res) => {
+    console.log(req.body);
     const { name, email, desc } = req.body;
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -98,14 +99,19 @@ export const updateUserProfile = expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
     if (user) {
         const prevEmail = user.email;
-        const Quiz = await QuizData.find({ prevEmail });
-        Quiz.map(async (quiz) => {
-            quiz.email = email;
-            await quiz.save();
-        })
         user.name = name || user.name;
         user.email = email || user.email;
         user.desc = desc || user.desc;
+        if (req.body.email) {
+            await QuizData.updateMany({ email: prevEmail }, {
+                $set: { email: email },
+            })
+                .then(res => {
+                    console.log('documents updated');
+                })
+                .catch(err => { throw new Error(`Error updatind Documents. ${err}`) })
+        }
+
         if (req.body.password) {
             user.password = req.body.password;
         }
