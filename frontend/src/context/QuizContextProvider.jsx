@@ -19,7 +19,7 @@ function QuizContextProvider({ children }) {
         await getQuestions({ amount, category, difficulty });
         setQuestions(Questions.length > 0 ? Questions : null)
       }
-      setHidden(!hidden);
+      setHidden(true);
     } catch (error) {
       console.log(error)
     }
