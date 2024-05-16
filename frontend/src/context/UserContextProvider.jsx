@@ -7,7 +7,7 @@ const UserContextProvider = ({ children }) => {
         let user = null;
         if (localStorage.getItem('userInfo')) {
             const userstring = localStorage.getItem('userInfo');
-            user = JSON.parse(userstring);;
+            user = JSON.parse(userstring);
         }
         return user;
     });
