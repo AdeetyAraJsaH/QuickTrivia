@@ -3,12 +3,12 @@ import ModalComponent from './ModalComponent';
 import QuizBody from './QuizBody';
 import { QuizContext } from '../../context/context';
 function UserQuiz() {
-    const {questions,hidden} = React.useContext(QuizContext);
+    const { questions, hidden } = React.useContext(QuizContext);
     return (
         <>
             {!hidden ?
                 <div className={` h-full w-full flex justify-center items-center ${hidden ? "hidden" : ""}`}>
-                    <ModalComponent/>
+                    <ModalComponent text={'Play Quiz'} />
                 </div>
                 :
                 <>
