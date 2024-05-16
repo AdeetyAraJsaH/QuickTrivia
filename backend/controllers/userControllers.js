@@ -109,7 +109,7 @@ export const updateUserProfile = expressAsyncHandler(async (req, res) => {
                 .then(res => {
                     console.log('documents updated');
                 })
-                .catch(err => { throw new Error(`Error updatind Documents. ${err}`) })
+                .catch(err => { throw new Error(`Error updating Documents. ${err}`) })
         }
 
         if (req.body.password) {
