@@ -5,14 +5,17 @@ import { QuizContext } from "../../context/context";
 
 export default function SelectComponent({ onClose }) {
     const [isInvalid, setIsInvalid] = React.useState(false);
-    const { fetchData, amount, setAmount, setCategoryName, setCategory, setDifficulty, hidden, setHidden, } = React.useContext(QuizContext)
+    const { questions, setQuestions, fetchData, amount, setAmount, setCategoryName, setCategory, setDifficulty, setHidden, } = React.useContext(QuizContext)
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (amount === '') {
             setIsInvalid(true);
         } else {
             onClose();
-            setHidden(!hidden)
+            setHidden(true)
+            if (questions.length !== 0) {
+                setQuestions([]);
+            }
             await fetchData();
         }
     };
