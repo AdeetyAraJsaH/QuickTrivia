@@ -1,11 +1,23 @@
-
 import React from "react";
-import { Card, CardHeader, CardBody, CardFooter, Image, Button, Divider } from "@nextui-org/react";
+import { Card, CardHeader, CardFooter, Button } from "@nextui-org/react";
+import ModalComponent from "./ModalComponent";
+import UserContext, { QuizContext } from "../../context/context";
 
 export default function Result({ result }) {
+  const { isLogin } = React.useContext(UserContext);
+  const { questions, setQuestions, fetchData, setHidden } = React.useContext(QuizContext);
   const index = Math.floor((result.score / result.totalscore) * 5);
   const remarks = ["You gonnna need some practice Bud !!!", "Not Bad, try again.", "You are really GOOD at this.", "Excellent Bud!", "Outstanding"]
   const colors = ["text-red-500", "text-orange-500", "text-yellow-500", "text-green-500", "text-blue-500"]
+
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    setHidden(true)
+    if (questions.length !== 0) {
+      setQuestions([]);
+    }
+    await fetchData();
+  };
 
   return (
     <div className="md:w-full gap-2 grid grid-cols-12 grid-rows-1 px-8">
@@ -17,9 +29,13 @@ export default function Result({ result }) {
           <h4 className={`px-2 font-medium text-3xl text-center ${colors[index]}`}>{remarks[index]}</h4>
         </div>
         <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-center">
-          <Button className="text-sm text-white font-normal" color="warning" radius="full" size="sm">
-            Play Again
-          </Button>
+          <>
+            {isLogin ?
+              <ModalComponent text={'Play Again'} /> :
+              <Button className="text-white bg-orange-700 font-bold" onPress={handleSubmit}>Play Again</Button>
+            }
+          </>
+
         </CardFooter>
       </Card>
       <Card className="col-span-12 sm:col-span-4 h-[300px]">
