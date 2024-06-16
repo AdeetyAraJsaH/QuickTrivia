@@ -18,8 +18,12 @@ const userSchema = mongoose.Schema(
         },
         description: {
             type: String,
-            default:"I'm great at quiZz riZz 😎😉"
-        }
+            default: "I'm great at quiZz riZz 😎😉"
+        },
+        profilePicture: {
+            image: Buffer,
+            contentType: String,
+        },
     },
     {
         timestamps: true
