@@ -41,8 +41,7 @@ function ProfilePicture({avatar}) {
 
     return (
         <form onSubmit={handleSubmit} method='POST' encType='multipart/form-data' className='flex flex-col justify-center items-center gap-4'>
-            <Avatar src={avatar} className="sm:w-10 sm:h-10 md:w-24 md:h-24 text-large" />
-            {/* <img src={avatar} alt="uploaded img" /> */}
+            <Avatar src={avatar ? avatar : "https://i.pravatar.cc/150?u=a04258114e29026708c"} className="sm:w-10 sm:h-10 md:w-24 md:h-24 text-large" />
             <div className='space-x-4'>
                 <input
                     name='profileImage'
