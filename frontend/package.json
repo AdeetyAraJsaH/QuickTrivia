@@ -13,7 +13,6 @@
     "@nextui-org/react": "^2.3.6",
     "@reduxjs/toolkit": "^2.2.4",
     "axios": "^1.6.8",
-    "dotenv": "^16.4.5",
     "nanoid": "^5.0.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
