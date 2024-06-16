@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 
 export default function UpdateForm({ username, email, desc, setUsername, setEmail, setDesc }) {
     return (
