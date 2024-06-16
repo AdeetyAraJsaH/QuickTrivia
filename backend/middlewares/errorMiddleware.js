@@ -12,7 +12,7 @@ export const errorHandler = (err, req, res, next) => {
         statusCode = 404;
         message = 'resource not found'
     }
-    // console.log(err)
+    console.log(err)
     res.status(statusCode).json({
         message,
         stack: process.env.NODE_ENV === 'production' ? null : err.stack

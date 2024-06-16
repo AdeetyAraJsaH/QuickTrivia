@@ -16,14 +16,15 @@ export const auth = expressAsyncHandler(async (req, res, next) => {
             req.user = await User.findById(decoded.userID).select('-password');
             if (req.user.email) {
                 const email = req.user.email
-                // console.log(req.user.email);
                 req.quizData = await QuizData.find({ email }, { _id: 1, details: 1, createdAt: 1, Result: 1 });
+                if (req.quizData.length === 0) req.quizData = null;
+                // change into null since it causing problem in React for getting length of array
             }
             next();
         } catch (error) {
             res.status(401)
-            console.log(error);
-            // throw new Error("Not Authorized , Invalid Token !");
+            // console.log(error);
+            throw new Error("Not Authorized , Invalid Token !");
         }
     } else {
         res.status(401)
