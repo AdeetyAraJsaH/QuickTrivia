@@ -2,7 +2,6 @@ import expressAsyncHandler from "express-async-handler"
 import User from "../models/userModels.js"
 import generateToken from "../utils/generateToken.js"
 import QuizData from "../models/quizModel.js";
-import multer from "multer";
 
 // @desc AUTH user / setToken
 // @access public

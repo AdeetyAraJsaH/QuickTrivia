@@ -8,9 +8,9 @@ import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
 
 const app = express();
+connectDB();
 app.use(cors());
 app.use(cors({origin:process.env.CLIENT_PORT}))
-connectDB();
 const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
