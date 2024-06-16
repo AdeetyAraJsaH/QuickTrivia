@@ -18,7 +18,8 @@ export const authUser = expressAsyncHandler(async (req, res) => {
             user: {
                 _id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                desc:user.description
             }
         });
     } else {
@@ -84,6 +85,7 @@ export const getUserProfile = expressAsyncHandler(async (req, res) => {
         _id: req.user._id,
         name: req.user.name,
         email: req.user.email,
+        desc: req.user.description,
         avatar
     }
     const quizData = req.quizData;
