@@ -2,6 +2,7 @@ import expressAsyncHandler from "express-async-handler"
 import User from "../models/userModels.js"
 import generateToken from "../utils/generateToken.js"
 import QuizData from "../models/quizModel.js";
+import multer from "multer";
 
 // @desc AUTH user / setToken
 // @access public
@@ -75,10 +76,15 @@ export const logoutUser = expressAsyncHandler(async (req, res) => {
 // @route GET api/users/profile
 
 export const getUserProfile = expressAsyncHandler(async (req, res) => {
+    const profile = await User.findById(req.user._id);
+    const imgBuffer = profile.profilePicture.image;
+    const imgBase64 = imgBuffer.toString('base64');
+    const avatar = `data:${profile.profilePicture.contentType};base64,${imgBase64}`;
     const user = {
         _id: req.user._id,
         name: req.user.name,
-        email: req.user.email
+        email: req.user.email,
+        avatar
     }
     const quizData = req.quizData;
     res.status(200).json({ message: 'User profile.', user, quizData })
@@ -131,6 +137,29 @@ export const updateUserProfile = expressAsyncHandler(async (req, res) => {
     }
 
 })
+
+export const updateProfilePicture = expressAsyncHandler(async (req, res) => {
+    // console.log(req.user)
+    console.log(req.file)
+    const img = req.file;
+    // res.status(200).json({ message: 'Image uploaded successfully' });
+
+    // Convert image buffer to a format that can be stored in MongoDB
+    const image =
+    {
+        image: new Buffer.from(img.buffer, 'base64'),
+        contentType: img.mimetype
+    };
+    const user = await User.findById(req.user._id);
+    if (user) {
+        user.profilePicture = image
+        // Save imgData to MongoDB...
+        const updatedProfilePicture = await user.save()
+        res.status(200).json({ data: img, message: 'Image uploaded successfully' });
+    } else {
+        res.status(500).json({ message: 'Error uploading image', error });
+    }
+});
 
 export const saveQuiz = expressAsyncHandler(async (req, res) => {
     const { createdAt, details, email, questions, Result } = req.body;
