@@ -32,7 +32,7 @@ function Layout() {
     return (
         <>
             <Header />
-            <main className="flex flex-grow h-full justify-center items-center">
+            <main className="flex flex-col flex-grow h-full justify-center items-center">
                 <Outlet />
             </main>
             <Footer />

@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+.questrial-regular {
+  font-family: "Questrial", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.file-upload-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.file-input {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.file-input-label {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 6px 20px;
+  border-radius: 5px;
+  margin: 0;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.file-input-label:hover,
+.file-input-label:focus {
+  background-color: #e7e7e7;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

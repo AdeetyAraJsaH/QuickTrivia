@@ -1,4 +1,4 @@
-import { Button, ScrollShadow, user } from '@nextui-org/react'
+import { Button, ScrollShadow } from '@nextui-org/react'
 import React, { useContext } from 'react'
 import axios from 'axios'
 import UserContext, { QuizContext } from '../../context/context'
@@ -81,8 +81,8 @@ function QuizBody() {
                 }),
                 details: {
                     amount,
-                    categoryName:categoryName?categoryName:'General Science',
-                    difficulty:difficulty?difficulty:'easy'
+                    categoryName: categoryName ? categoryName : 'General Science',
+                    difficulty: difficulty ? difficulty : 'easy'
                 },
                 email: userInfo['email'],
                 questions,
@@ -135,7 +135,7 @@ function QuizBody() {
                     </div>
                 </div>
                 {/* Second Block */}
-                <div className="basis-1/5 flex flex-col w-full h-full p-2 md:w-1/3 lg:w-2/5">
+                <div className="basis-1/5 flex flex-col w-full h-full p-2 md:w-1/3 lg:w-2/5 border-l-1">
                     <h2 className="text-xl font-semibold text-center">Question Palette</h2>
                     <ScrollShadow hideScrollBar >
                         <div className="flex md:h-72 flex-wrap justify-center pb-4 max-h-full">

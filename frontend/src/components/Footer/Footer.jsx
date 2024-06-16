@@ -71,7 +71,7 @@ export default function Footer() {
                 <div className=" border-t my-6 py-6 sm:flex sm:items-center sm:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center">
                         © 2023{" "}
-                        <a href="https://hiteshchoudhary.com/" className="hover:underline">
+                        <a href="https://port-e-folio.netlify.app/" className="hover:underline">
                             adityarajsah
                         </a>
                         . All Rights Reserved.

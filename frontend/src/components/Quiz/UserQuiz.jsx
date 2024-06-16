@@ -7,7 +7,7 @@ function UserQuiz() {
     return (
         <>
             {!hidden ?
-                <div className={` h-full w-full flex justify-center items-center ${hidden ? "hidden" : ""}`}>
+                <div className={` h-screen w-full flex justify-center items-center ${hidden ? "hidden" : ""}`}>
                     <ModalComponent text={'Play Quiz'} />
                 </div>
                 :

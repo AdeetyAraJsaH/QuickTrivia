@@ -70,7 +70,7 @@ export default function SelectComponent({ onClose }) {
                         </SelectItem>
                     ))}
                 </Select>
-                <Button type="submit" color="primary">
+                <Button type="submit" className="text-white bg-orange-700 font-bold">
                     Get Quiz
                 </Button>
             </div >
