@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../../App.css'
 import { Link, useNavigate } from 'react-router-dom';
 import UserContext from '../../context/context';
+import config from '../../config/config';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ const SignIn = () => {
             user.email = email;
             user.password = password;
             console.log("handle submit")
-            await axios.post(`${process.env.SERVER_PORT}/api/users/auth`, user)
+            await axios.post(`${config.SERVER_URL}/api/users/auth`, user)
                 .then(res => {
                     // console.log(res);
                     localStorage.setItem('userInfo', JSON.stringify(res.data.user));

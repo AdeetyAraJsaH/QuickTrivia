@@ -6,6 +6,7 @@ import TableComponent from './TableComponent'
 import cover from './cover1.png'
 import UpdateForm from "./UpdateForm";
 import ProfilePicture from "./ProfilePicture";
+import config from "../../config/config";
 
 function Profile() {
 
@@ -45,7 +46,7 @@ function Profile() {
     };
 
     const fetchData = async () => {
-        await axios.get(`${process.env.SERVER_PORT}/api/users/profile`)
+        await axios.get(`${config.SERVER_URL}/api/users/profile`)
             .then(res => {
                 console.log(res.data);
                 setAvatar(res.data.user.avatar)
@@ -58,7 +59,7 @@ function Profile() {
 
     const handleSubmit = async () => {
         if (validateEmail()) {
-            await axios.put(`${process.env.SERVER_PORT}api/users/profile`, { name: username, email: email, description: desc })
+            await axios.put(`${config.SERVER_URL}api/users/profile`, { name: username, email: email, description: desc })
                 .then(res => {
                     console.log(res);
                     setUserInfo(res.data.user);

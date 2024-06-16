@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import config from './config/config'
 import axios from 'axios'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -11,7 +12,7 @@ function Layout() {
 
     const checkSession = async () => {
         if (localStorage.getItem('userInfo')) {
-            await axios.get(`${process.env.SERVER_PORT}/api/users/profile`)
+            await axios.get(`${config.SERVER_URL}/api/users/profile`)
                 .then(res => {
                     setUserInfo(res.data.user)
                     console.log(res)

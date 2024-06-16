@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../../App.css'
 import axios from 'axios'
 import UserContext from '../../context/context';
+import config from '../../config/config';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ const SignUp = () => {
             user.email = email;
             user.password = password1;
 
-            await axios.post(`${process.env.SERVER_PORT}/api/users`, user)
+            await axios.post(`${config.SERVER_URL}/api/users`, user)
                 .then(res => {
                     console.log(res);
                     localStorage.setItem('userInfo', JSON.stringify(res.data.user));

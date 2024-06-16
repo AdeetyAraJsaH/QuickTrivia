@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import userContext from "../../context/context";
 import DropDown from './DropDown.svg'
 import Profile from './Profile.svg'
+import config from "../../config/config";
 export default function Header() {
     const navigate = useNavigate()
     const { isLogin, setUserInfo } = useContext(userContext);
@@ -17,7 +18,7 @@ export default function Header() {
     };
 
     const handleLogout = async () => {
-        await axios.post('api/users/logout')
+        await axios.post(`${config.SERVER_URL}api/users/logout`)
             .then(res => {
                 console.log(res)
                 setUserInfo(null);

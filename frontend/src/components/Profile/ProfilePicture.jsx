@@ -1,6 +1,7 @@
 import { Avatar, Button } from '@nextui-org/react';
 import axios from 'axios'
 import React from 'react'
+import config from '../../config/config';
 
 function ProfilePicture({avatar}) {
 
@@ -26,7 +27,7 @@ function ProfilePicture({avatar}) {
         e.preventDefault();
         const formData = new FormData();
         formData.append('profileImage',fileInputRef.current.files[0] );
-        await axios.post(`${process.env.SERVER_PORT}/api/users/profile`, formData, {
+        await axios.post(`${config.SERVER_URL}/api/users/profile`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

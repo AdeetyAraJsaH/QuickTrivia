@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import axios from 'axios'
 import UserContext, { QuizContext } from '../../context/context'
 import Result from './Result'
+import config from '../../config/config'
 
 function QuizBody() {
     // const navigate = useNavigate();
@@ -89,7 +90,7 @@ function QuizBody() {
                 Result
             }
             console.log(usersQuizData);
-            await axios.post('api/users/quiz', { ...usersQuizData })
+            await axios.post(`${config.SERVER_URL}api/users/quiz`, { ...usersQuizData })
             setHideResult(false)
         } else {
             setHideResult(false)
