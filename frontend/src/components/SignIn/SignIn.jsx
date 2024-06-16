@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import '../../App.css'
-import { Link, json, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserContext from '../../context/context';
 
 const SignIn = () => {
@@ -43,7 +43,7 @@ const SignIn = () => {
             user.email = email;
             user.password = password;
             console.log("handle submit")
-            await axios.post("/api/users/auth", user)
+            await axios.post(`${process.env.SERVER_PORT}/api/users/auth`, user)
                 .then(res => {
                     // console.log(res);
                     localStorage.setItem('userInfo', JSON.stringify(res.data.user));

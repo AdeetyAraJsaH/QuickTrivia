@@ -26,7 +26,7 @@ function ProfilePicture({avatar}) {
         e.preventDefault();
         const formData = new FormData();
         formData.append('profileImage',fileInputRef.current.files[0] );
-        await axios.post('/api/users/profile', formData, {
+        await axios.post(`${process.env.SERVER_PORT}/api/users/profile`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

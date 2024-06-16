@@ -45,7 +45,7 @@ function Profile() {
     };
 
     const fetchData = async () => {
-        await axios.get(`/api/users/profile`)
+        await axios.get(`${process.env.SERVER_PORT}/api/users/profile`)
             .then(res => {
                 console.log(res.data);
                 setAvatar(res.data.user.avatar)
@@ -58,7 +58,7 @@ function Profile() {
 
     const handleSubmit = async () => {
         if (validateEmail()) {
-            await axios.put(`api/users/profile`, { name: username, email: email, description: desc })
+            await axios.put(`${process.env.SERVER_PORT}api/users/profile`, { name: username, email: email, description: desc })
                 .then(res => {
                     console.log(res);
                     setUserInfo(res.data.user);

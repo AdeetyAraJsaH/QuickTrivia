@@ -52,7 +52,7 @@ const SignUp = () => {
             user.email = email;
             user.password = password1;
 
-            await axios.post("/api/users", user)
+            await axios.post(`${process.env.SERVER_PORT}/api/users`, user)
                 .then(res => {
                     console.log(res);
                     localStorage.setItem('userInfo', JSON.stringify(res.data.user));

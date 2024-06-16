@@ -11,7 +11,7 @@ function Layout() {
 
     const checkSession = async () => {
         if (localStorage.getItem('userInfo')) {
-            await axios.get('/api/users/profile')
+            await axios.get(`${process.env.SERVER_PORT}/api/users/profile`)
                 .then(res => {
                     setUserInfo(res.data.user)
                     console.log(res)
