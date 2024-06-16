@@ -18,7 +18,7 @@ export default function Header() {
     };
 
     const handleLogout = async () => {
-        await axios.post(`${config.SERVER_URL}api/users/logout`)
+        await axios.post(`${config.SERVER_URL}/api/users/logout`)
             .then(res => {
                 console.log(res)
                 setUserInfo(null);

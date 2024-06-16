@@ -59,7 +59,7 @@ function Profile() {
 
     const handleSubmit = async () => {
         if (validateEmail()) {
-            await axios.put(`${config.SERVER_URL}api/users/profile`, { name: username, email: email, description: desc })
+            await axios.put(`${config.SERVER_URL}/api/users/profile`, { name: username, email: email, description: desc })
                 .then(res => {
                     console.log(res);
                     setUserInfo(res.data.user);
