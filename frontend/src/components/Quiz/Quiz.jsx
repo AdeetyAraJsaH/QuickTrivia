@@ -9,7 +9,7 @@ const Quiz = () => {
   const { isLogin } = useContext(UserContext);
   return (
     <QuizContextProvider>
-      <div className="w-full h-screen">
+      <div className="w-full md:h-screen h-auto my-4">
         {isLogin ? <UserQuiz /> : <PublicQuiz />}
       </div>
     </QuizContextProvider>

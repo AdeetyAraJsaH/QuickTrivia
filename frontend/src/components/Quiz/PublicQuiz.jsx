@@ -7,7 +7,7 @@ function PublicQuiz() {
     return (
         <>
             {!hidden ?
-                <div className={` h-screen w-full flex justify-center items-center ${hidden ? "hidden" : ""}`}>
+                <div className={`h-screen w-full flex justify-center items-center ${hidden ? "hidden" : ""}`}>
                     <Button className="p-4 text-white font-semibold bg-amber-500" onPress={() => {
                         setHidden(!hidden)
                         fetchData()
