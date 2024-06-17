@@ -21,7 +21,7 @@ export default function Result({ result }) {
 
   return (
     <div className="md:w-full flex flex-col sm:flex-row justify-center items-center gap-4 px-8">
-      <Card className="w-full sm:w-1/3 h-[300px]">
+      <Card className="w-full sm:w-1/3 h-[280px]">
         <CardHeader className="absolute z-10 top-1 flex-col !items-center">
           <h4 className="text-black/65 font-medium text-xl text-center">You got <span className={`text-5xl font-semibold ${colors[index]}`}>{result.score}</span> out of<span className={`text-4xl font-semibold ${colors[index]}`}> {result.totalscore}</span> </h4>
         </CardHeader>
@@ -38,7 +38,7 @@ export default function Result({ result }) {
 
         </CardFooter>
       </Card>
-      <Card className="w-full sm:w-1/3 h-[300px]">
+      <Card className="w-full sm:w-1/3 h-[280px]">
         <CardHeader className="absolute z-10 top-1 flex-col !items-start">
           <h4 className="text-black/65 font-medium text-large">Checkout your accuracy.</h4>
         </CardHeader>
